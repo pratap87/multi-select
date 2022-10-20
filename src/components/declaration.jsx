@@ -8,7 +8,7 @@ const DeclarationScreen = () => {
     let value=e.target.checked
     let name=e.target.name;
      setUserData({...userData,[name]:value})}
-     console.log(userData)
+    
   return (
     <div className='box'>
         <h3 style={{marginLeft:'4rem'}}>Declaration</h3>

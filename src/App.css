@@ -75,6 +75,8 @@ align-items: center;
  
 .plan-container{
   display: flex;
+ 
+  width: 50%;
   flex-direction: column;
   
   text-align: justify;
@@ -137,7 +139,7 @@ option p
 
 .slider-container{
   background-color: #FFFFFF;
-  width: 706px;
+  width: 100%;
   padding: 2rem;
 }
 
@@ -218,4 +220,21 @@ font-style: normal;
 font-weight: 700;
 font-size: 27px;
 line-height: 120%;
+}
+
+.form-preview{
+  width: 30%;
+  background-color: #FFFFFF;
+  text-align: justify;
+  padding: 1rem;
+  height: 220px;
+}
+
+.main-container{
+  display: flex;
+  width: 100%;
+}
+
+.form-preview h3{
+  font-weight: 700;
 }

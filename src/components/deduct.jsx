@@ -3,6 +3,7 @@ import { useUserContext } from "../context/userContext";
 import { Input, Slider } from "antd";
 import UserIcon from '../user.svg'
 import { Checkbox } from 'antd'
+import FormPreview from "./form-preview";
  
 
 const marks = {
@@ -19,7 +20,7 @@ const marks = {
 
 const SecondScreen = () => {
   const { userData, setUserData } = useUserContext();
- 
+ console.log(userData)
   const onChangeCheck = (e) => {
     let value=e.target.checked
      setUserData({...userData,'isChecked':value})}
@@ -28,27 +29,31 @@ const onChange=(value)=>{
 
 switch(value){
     case 25:
-        setUserData({...userData,'money':200000})
-          setUserData({...userData,slider:value})
+        setUserData({...userData,money:200000,slider:value})
+       
         break;
     case 50:    
-    setUserData({...userData,'money':300000})
-    setUserData({...userData,slider:value})
+    setUserData({...userData,money:300000,slider:value})
+   
     break;
     case 100:
-        setUserData({...userData,'money':500000})
-        setUserData({...userData,slider:value})
+        setUserData({...userData,money:500000,slider:value})
+    
         break;
     default :
-    setUserData({...userData,'money':100000})
-    setUserData({...userData,slider:value})
+    setUserData({...userData,money:100000,slider:value})
+ 
 
 
 }
+
+
+ 
 
 }
 
   return (
+    <div className="main-container">
     <div className="plan-container">
       <h3>Select your deductible amount</h3>
       <p>
@@ -71,10 +76,14 @@ switch(value){
         tooltip={{ formatter: null }}
       />
       </div>
+      
 <div className="checkbox-cont">
       <Checkbox onChange={onChangeCheck} checked={userData.isChecked}></Checkbox>
       <p>I understand that this insurance will not be utilized until ₹{userData.money} (deductible) is exhausted.</p>
       </div>
+    </div>
+    <FormPreview/>
+   
     </div>
   );
 };

@@ -4,6 +4,7 @@ import React from "react";
 import { Input } from "antd";
 import { useUserContext } from "../context/userContext";
 import {  Form } from "antd";
+import FormPreview from "./form-preview";
 const { Panel } = Collapse;
 
 const { Option } = Select;
@@ -58,6 +59,7 @@ const Plan = () => {
     );
   };
   return (
+    <div className="main-container">
     <div className="plan-container">
       <h3>Choose your plan</h3>
       <p>Hello Anisha,</p>
@@ -235,6 +237,8 @@ const Plan = () => {
           </Panel>
         </Collapse>
       </Form>
+    </div>
+ <FormPreview/>
     </div>
   );
 };

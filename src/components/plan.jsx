@@ -1,40 +1,28 @@
 import { Select, Collapse } from "antd";
- 
+
 import React from "react";
 import { Input } from "antd";
 import { useUserContext } from "../context/userContext";
-import { Formik, Form, Field, FieldArray ,ErrorMessage } from 'formik';
+import {  Form } from "antd";
 const { Panel } = Collapse;
 
-
 const { Option } = Select;
- 
 
 const Plan = () => {
   const { userData, setUserData } = useUserContext();
 
-
-  const initialData={
-    plan:'',
-    email:'',
-    number:'',
-    address:'',
-    address2:'',
-    pincode:'',
-    state:''
-
-  }
+ 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
 
-  const onChange=(value)=>{
-    setUserData({...userData,['plan']:value})
-  }
+  const onChange = (value) => {
+    setUserData({ ...userData, ["plan"]: value });
+  };
 
-  console.log(userData)
+  console.log(userData);
   const Group = () => {
     return (
       <svg
@@ -77,26 +65,32 @@ const Plan = () => {
         Increase yours and your family's health insurance cover by ₹20 lakhs
         with Super top-up!
       </p>
- 
-      <form
-      
-      >
-        <Collapse  className="plan-type">
+
+      <Form>
+        <Collapse className="plan-type">
           <Panel header="Plan Type" key="1" style={{ fontWeight: "500" }}>
             <Select
               showSearch
               placeholder="Select a plan"
               className="select-plan"
               onChange={onChange}
-            
+              value={userData.plan}
             >
               <Option value="Self (individual)">
                 <p>
-                  Self <Group />
+                 <Group />   Self
                 </p>
               </Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="tom">Tom</Option>
+              <Option value="lucy">
+                <p>
+                <Group />   Parent
+                </p>
+              </Option>
+              <Option value="tom">
+              <p>
+                <Group />   Parent + self
+                </p>
+              </Option>
             </Select>
           </Panel>
         </Collapse>
@@ -108,65 +102,139 @@ const Plan = () => {
           >
             <div className="personal-details-form">
               <div>
-                <p>Personal email address</p>
-                <Input name='email'
-                type='text'
-                required
-                onChange={handleChange}
-                />
-                     
+                <label>Personal email address</label>
+
+                <Form.Item
+                  name="email"
+                  initialValue={userData.email}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input email!",
+                    },
+                  ]}
+                >
+                  <Input
+                    name="email"
+                    type="text"
+                    value={userData.email}
+                    required
+                  
+                    onChange={handleChange}
+                  />
+                </Form.Item>
               </div>
               <div>
-                <p>Mobile number</p>
-                <Input 
-                  type='number'
-                  required
-                  name='number'
-                  onChange={handleChange}
-                />
+                <label>Mobile number</label>
+                <Form.Item
+                  name="number"
+                  initialValue={userData.number}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input mobile number!",
+                    },
+                    {
+                      max: 10,
+                      message: "max length cannot be greater than 10",
+                    },
+                  ]}
+                >
+                  <Input
+                    type="number"
+                    required
+                    name="number"
+                    onChange={handleChange}
+                  />
+                </Form.Item>
               </div>
               <div>
-                <p>Address line 01</p>
-                <Input 
-                   type='text'
-                   required
-                   name='address1'
-                   onChange={handleChange}
-                
-                />
-              </div>
-              <div>
-                <p>Address line 02</p>
+                <label>Address line 01</label>
+                <Form.Item
+                  name="address01"
+                  initialValue={userData.address1}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please add Address!",
+                    }
+                  ]}
+                >
                 <Input
-                  type='text'
+                  type="text"
                   required
-                  name='address2'
+                  name="address1"
                   onChange={handleChange}
                 />
+                </Form.Item>
               </div>
               <div>
-                <p>Pincode</p>
-                <Input 
-                  type='text'
-                  required
-                  name='pincode'
-                  onChange={handleChange}/>
-              </div>
-              <div>
-                <p>State</p>
+                <label>Address line 02</label>
+                <Form.Item
+                  name="address02"
+                  initialValue={userData.address2}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please add Address!",
+                    }
+                  ]}
+                >
                 <Input
-                  type='text'
-                  required
-                  name='state'
+                  type="text"
+               
+                  name="address2"
                   onChange={handleChange}
                 />
+                </Form.Item>
+              </div>
+              <div>
+
+                <label>Pincode</label>
+                <Form.Item
+                  name="pincode"
+                  initialValue={userData.pincode}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please add pincode",
+                    }
+                  ]}
+                >
+
+                <Input
+                  type="text"
+                  required
+                  name="pincode"
+                  onChange={handleChange}
+                />
+                </Form.Item>
+              </div>
+              <div>
+                <label>State</label>
+                <Form.Item
+                  name="state"
+                  initialValue={userData.state}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please add State!",
+                    }
+                  ]}
+                >
+                <Input
+                  type="text"
+                  required
+                  name="state"
+                  value={userData["state"] || ""}
+                  onChange={handleChange}
+                />
+                </Form.Item>
               </div>
             </div>
           </Panel>
         </Collapse>
-      </form>
-      
-     
+      </Form>
     </div>
   );
 };

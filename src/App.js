@@ -35,7 +35,7 @@ const steps = [
 ];
 const App = () => {
   const [current, setCurrent] = useState(0);
-  const [data,setData]=useState({});
+ 
   const next = () => {
     setCurrent(current + 1);
   };

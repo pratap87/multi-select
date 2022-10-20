@@ -12,11 +12,13 @@
 .steps-action {
  
 display: flex;
-position: absolute;
+position:sticky;
  width: 100%;
 background-color:  #FFFFFF;
-bottom: 0;
+ margin: 0;
+ bottom: 0;
 height: 4rem;
+margin-top: 2rem;
 justify-content: center;
 align-items: center;
  
@@ -36,8 +38,7 @@ align-items: center;
   background-color: #E06358;
 }
 
-.app{
-  height: 100vh;
+.app{ 
   width: 100vw;
   overflow-y: scroll;
   background-color: #ECE9E5;

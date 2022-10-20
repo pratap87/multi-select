@@ -15,6 +15,6 @@ export function UseContextProvider({ children }) {
 export function useUserContext() {
   const { userData, setUserData ,error,setError} = useContext(UserContext);
 
-  return { userData, setUserData };
+  return { userData, setUserData ,error,setError};
 }
 

@@ -67,9 +67,16 @@ align-items: center;
 }
 
 .top-container{
+  
   display: flex;
+  justify-content: center;
+  align-items: center;
 
   
+}
+.top-container img{
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
  
@@ -104,8 +111,13 @@ align-items: center;
 option p
 {
   display:flex;
+  
   width: 200px;
   background-color: #E06358;
+}
+
+.cost{
+  
 }
 
 .plan-type{

@@ -1,6 +1,6 @@
 import { Select, Collapse } from "antd";
 
-import React from "react";
+import React, { useEffect }  from "react";
 import { Input } from "antd";
 import { useUserContext } from "../context/userContext";
 import {  Form } from "antd";
@@ -10,20 +10,38 @@ const { Panel } = Collapse;
 const { Option } = Select;
 
 const Plan = () => {
-  const { userData, setUserData } = useUserContext();
-
+  const { userData, setUserData,error,setError } = useUserContext();
+  
  
-
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
+
+  
   };
+
+
+  useEffect(()=>{
+if(!userData.plan || !userData.email ||!userData.number )
+{ setError({...error,plan:'true'})
+}
+else{
+  setError({...error,plan:'false'})
+}
+  },[userData])
+ 
+   
+
 
   const onChange = (value) => {
-    setUserData({ ...userData, ["plan"]: value });
+    setUserData({ ...userData, "plan": value });
+
+
+    
   };
 
-  console.log(userData);
+ 
   const Group = () => {
     return (
       <svg
@@ -68,7 +86,10 @@ const Plan = () => {
         with Super top-up!
       </p>
 
-      <Form>
+      <Form 
+    
+        
+      >
         <Collapse className="plan-type">
           <Panel header="Plan Type" key="1" style={{ fontWeight: "500" }}>
             <Select
@@ -80,17 +101,22 @@ const Plan = () => {
             >
               <Option value="Self (individual)">
                 <p>
-                 <Group />   Self
+                 <Group />   Self  <span className="cost">600</span>
                 </p>
               </Option>
-              <Option value="lucy">
+              <Option value="parent">
                 <p>
-                <Group />   Parent
+                <Group />  Parent  <span className="cost">0</span>
                 </p>
               </Option>
-              <Option value="tom">
+              <Option value="self and parent">
               <p>
-                <Group />   Parent + self
+                <Group />   Parent + self  <span className="cost">600</span>
+                </p>
+              </Option>
+              <Option value="self ,spouse and kids">
+              <p>
+                <Group /> self + spouse + kids <span className="cost">1800</span>
                 </p>
               </Option>
             </Select>
@@ -108,7 +134,9 @@ const Plan = () => {
 
                 <Form.Item
                   name="email"
+                  
                   initialValue={userData.email}
+               
                   rules={[
                     {
                       required: true,

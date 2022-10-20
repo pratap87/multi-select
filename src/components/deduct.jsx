@@ -1,6 +1,6 @@
 import React from "react";
 import { useUserContext } from "../context/userContext";
-import { Input, Slider } from "antd";
+import {  Slider } from "antd";
 import UserIcon from '../user.svg'
 import { Checkbox } from 'antd'
 import FormPreview from "./form-preview";
@@ -18,7 +18,7 @@ const marks = {
   },
 };
 
-const SecondScreen = () => {
+const SecondScreen = (props) => {
   const { userData, setUserData } = useUserContext();
  console.log(userData)
   const onChangeCheck = (e) => {
@@ -55,7 +55,7 @@ switch(value){
   return (
     <div className="main-container">
     <div className="plan-container">
-      <h3>Select your deductible amount</h3>
+      <h3> Select your deductible amount</h3>
       <p>
         Select the deductible amount for the policy (or policies) below. (what
         is a deductible?){" "}

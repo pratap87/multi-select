@@ -8,40 +8,42 @@ import Plan from './components/plan';
 import SecondScreen from './components/deduct';
 import DeclarationScreen from './components/declaration';
 import ReviewScreen from './components/Review';
+import { useUserContext } from "./context/userContext";
 import Congratulations from './components/Congratulations';
 const { Step } = Steps;
 
-const steps = [
-  {
-    title: 'First',
-    content: <Plan/>,
-  },
-  {
-    title: 'Second',
-    content: <SecondScreen/>,
-  },
-  {
-    title: 'Third',
-    content: <DeclarationScreen/>,
-  },
-  {
-    title: 'Review',
-    content: <ReviewScreen/>,
-  },
-  {
-    title: 'Done',
-    content: <Congratulations/>,
-  }
-];
+
 const App = () => {
   const [current, setCurrent] = useState(0);
- 
+  const { error } = useUserContext();
   const next = () => {
     setCurrent(current + 1);
   };
   const prev = () => {
     setCurrent(current - 1);
   };
+  const steps = [
+    {
+      title: 'plan',
+      content: <Plan/>,
+    },
+    {
+      title: 'deduction',
+      content: <SecondScreen  onClick={() => prev()}/>,
+    },
+    {
+      title: 'declaration',
+      content: <DeclarationScreen/>,
+    },
+    {
+      title: 'Review',
+      content: <ReviewScreen/>,
+    },
+    {
+      title: 'Done',
+      content: <Congratulations/>,
+    }
+  ];
   return (
     <div className='app'>
       <div className='container'>
@@ -49,6 +51,7 @@ const App = () => {
           {current > 0 && (
           <img src={BackIcon} className='img-icon'
         alt='back'
+        style={{width:'20px',height:'20px'}}
             onClick={() => prev()}
           />
           
@@ -63,7 +66,8 @@ const App = () => {
       <div className="steps-content">{steps[current].content}</div>
       </UseContextProvider>
       <div className="steps-action">
-        {current < steps.length - 1 && (
+   
+        {current < steps.length - 1 &&  (
           <Button type="primary" onClick={() => next()}>
             Next
           </Button>

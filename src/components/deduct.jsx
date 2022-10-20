@@ -20,7 +20,6 @@ const marks = {
 
 const SecondScreen = (props) => {
   const { userData, setUserData } = useUserContext();
- console.log(userData)
   const onChangeCheck = (e) => {
     let value=e.target.checked
      setUserData({...userData,'isChecked':value})}
